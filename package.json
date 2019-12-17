@@ -1,0 +1,10 @@
+{
+  "name": "homey.ink",
+  "version": "1.0.0",
+  "config": {
+    "s3BucketProduction": "homey.ink"
+  },
+  "scripts": {
+    "start": "serve -p 5000 app"   
+  }
+}

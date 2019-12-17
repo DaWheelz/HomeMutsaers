@@ -1,0 +1,188 @@
+/*
+ * Theme by: Danee de Kruyff
+ */
+
+ #container {
+
+}
+
+.info-message {
+  font-size: 3.4vh;
+  font-weight: 350;
+}
+
+.info-date {
+  margin-bottom: 1%;
+}
+
+#zoom {
+  visibility: hidden;
+}
+
+#weather {
+  width: 42vw;
+  top: 0vw;
+}
+  #sunrise-icon, #sunset-icon  {
+    width: 3vw;
+    height: 3vw;
+    margin-right: 0vw;
+  }
+  #sunrise-time, #sunset-time {
+    font-size: 1.2vw;
+    line-height: 0vh;
+  }
+  #weather-state-icon {
+  }
+  #weather-temperature {
+  }
+  #weather-temperature:after {
+    content: "°";
+  }
+
+  #text {
+    position: absolute;
+    left: 30vw;
+    right: 30vw;
+    height: 7vw;
+  }
+    #text-large {
+      font-weight: 500;
+      font-size: 3vw;
+      margin-top: 1vw;
+    }
+    #text-large:after {
+      font-weight: 300;
+      width: 10vw;
+      margin: 0.5vw auto;
+    }
+    #text-small {
+      font-size: 1.5vw;
+    }
+
+    #version-icon {
+      display: inline-block;
+      width: 3vw;
+      height: 5vw;
+    }
+    #battery-details {
+      display: inline-block;
+      width: 3vw;
+      height: 5vw;
+    }
+    #notification-details {
+      display: inline-block;
+      width: 3vw;
+      height: 5vw;
+    }
+    #sensor-details {
+      display: inline-block;
+      width: 3vw;
+      height: 5vw;
+    }
+    #settings-icon {
+      display: inline-block;
+      width: 3vw;
+      height: 5vw;
+    }
+    #logo {
+      display: inline-block;
+      width: 2.2vw;
+      height: 4.2vw;
+      margin-bottom: 0.3vw;
+    }
+
+.favorites {
+  position: static;
+  left: 0;
+  right: 0;
+}
+  .favorites-inner {
+    white-space: normal;
+    -webkit-mask-image: none;
+  }
+  .favorites h2 {
+    display: block;
+    width: auto;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    text-transform: uppercase;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    opacity: 0.3;
+  }
+  .favorites h2:after {
+    display: none;
+  }
+    .favorites h2 span {
+      flex-shrink: 0;
+      margin-right: 1vw;
+    }
+    .favorites h2:after {
+      content: "";
+      display: block;
+      width: 100%;
+      vertical-align: middle;
+      height: 1px;
+      background: white;
+    }
+
+#devices {
+  position: static;
+}
+  .device {
+    width: 150px; /*20vh;*/
+    height: 150px; /*20vh;*/
+    padding: 15px; /*2vh;*/
+    margin-right: 13px; /*1.9vh;*/
+    margin-bottom: 15px; /*2vh;*/
+    border-radius: 22px; /*3vh;*/
+  }
+    .device .icon {
+      position: absolute;
+      top: 15px; /*2vh;*/
+      left: 15px; /*2vh;*/
+      width: 52px; /*7vh;*/
+      height: 52px; /*7vh;*/
+    }
+    .device .icon-capability {
+      position: absolute;
+      top: 45px; /*6vh;*/
+      left: 19px; /*2.5vh;*/
+      width: 38px; /*5vh;*/
+      height: 38px; /*5vh;*/
+    }
+    .device .value {
+      position: absolute;
+      top: 22px; /*3vh;*/
+      right: 15px; /*2vh;*/
+      font-size: 31px; /*4.2vh;*/
+      font-weight: 300;
+      line-height: 31px; /*4.2vh;*/
+      width: auto;
+      height: auto;
+      max-height: 60px; /*8vh;*/
+      text-align: right;
+    }
+
+    #decimal {
+      font-size: 3vh;
+    }
+    .device .name {
+      position: absolute;
+      bottom: 15px; /*2vh;*/
+      left: 15px; /*2vh;*/
+      right: 15px; /*2vh;*/
+      font-size: 20px; /*2.7vh;*/
+      font-weight: 300;
+      line-height: 26px; /*3.5vh;*/
+      width: auto;
+      height: auto;
+      max-height: 52px; /*7vh;*/
+    }
+    .device .name.highlight {
+      font-weight: 500;
+    }
