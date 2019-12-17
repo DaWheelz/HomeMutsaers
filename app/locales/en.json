@@ -64,6 +64,7 @@
             "background": "Background (url)",
             "opacity": "Background opacity",
             "clock": "Show clock",
+            "darkmode": "Dark mode",
             "zoom": "Zoom"
         },
         "errors": {

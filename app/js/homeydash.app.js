@@ -22,6 +22,7 @@ if (lang) {
 var texts = getTexts(locale)
 loadScript(locale, setLocale)
 
+
 window.addEventListener('load', function () {
 
   //var homey;
@@ -149,7 +150,6 @@ window.addEventListener('load', function () {
   $settingsIcon.addEventListener('click', function () {
     renderSettingsPanel();
   })
-
 
   outdoortemperature = getCookie("outdoortemperature")
   if (outdoortemperature == undefined || outdoortemperature == "") { outdoortemperature = "homey" }
@@ -489,7 +489,7 @@ window.addEventListener('load', function () {
           // /new 1.1.1.9
           if (device.capabilitiesObj.measure_power) {
             device.makeCapabilityInstance('measure_power', function (value) {
-              
+
               var $deviceElement = document.getElementById('device:' + device.id);
               if ($deviceElement) {
                 var $valueElement = document.getElementById('value:' + device.id + ":measure_power");
@@ -500,14 +500,14 @@ window.addEventListener('load', function () {
           }
           if (device.capabilitiesObj.meter_power) {
             var $value = ""
-             if(device.capabilitiesObj.meter_power.value == null){
-               $value = " -"
-             }else {
-               $value = device.capabilitiesObj.meter_power.value
-             }
+            if (device.capabilitiesObj.meter_power.value == null) {
+              $value = " -"
+            } else {
+              $value = device.capabilitiesObj.meter_power.value
+            }
 
-             $powerconsump.innerHTML = $value;
-             console.log($value);
+            $powerconsump.innerHTML = $value;
+            console.log($value);
           }
           if (device.capabilitiesObj.measure_current) {
             device.makeCapabilityInstance('measure_current', function (value) {
@@ -676,23 +676,28 @@ window.addEventListener('load', function () {
   }
 
   function renderImages() {
-    var backgroundUrl = getCookie('background')
-    var backgroundColor = getCookie('backgroundcolor')
-    var backgroundOpacity = getCookie('backgroundopacity')
     var logo = getCookie('logo')
+    var darkmode = getCookie('darkmode')
+    var stylesheet = document.styleSheets[0];
+    console.log(stylesheet);
     var css = ""
-    if (backgroundUrl != "") {
-      document.body.style.background = backgroundColor;
-      css = "content: ''; background: url('" + backgroundUrl + "');"
-      css = css + " top: " + vadjust + "px; left: 0; bottom: 0; right: 0; position: absolute; z-index: -1; background-size:cover;"
-      css = css + " opacity: " + backgroundOpacity + ";"
+
+    if(darkmode = true){
+      // document.body.style.background = "#2b2b2b";
+      // document.body.style.color = "white"
+
+      // //device/group/flow cards
+      // stylesheet.cssRules[70].style.backgroundColor = "#5e5e5e"
+    }else{
+
     }
-    if (backgroundUrl == "" && backgroundfromurl != "") {
-      document.body.style.background = backgroundColor;
-      css = "content: ''; background: url('" + backgroundfromurl + "');"
-      css = css + " top: " + vadjust + "px; left: 0; bottom: 0; right: 0; position: absolute; z-index: -1; background-size:cover;"
-      css = css + " opacity: " + backgroundOpacity + ";"
+
+    if (window.matchMedia('(prefers-color-scheme)').media === 'not all') {
+      console.log('Browser doesn\'t support dark mode');
+    }else {
+      console.log('it does');
     }
+    
 
     styleElem = document.head.appendChild(document.createElement("style"));
     styleElem.innerHTML = "#body:after {" + css + "}";
@@ -954,7 +959,7 @@ window.addEventListener('load', function () {
                 if (device.driverUri == "homey:app:com.jasperbollen.homey-blink" && device.images[0].imageObj.id != "") {
                   $img = document.createElement('img');
                   $cameraInner.style.visibility = "visible";
-                  
+
                   imgId = device.images[0].imageObj.id
                   $img.innerHTML = "";
                   $cameraInner.innerHTML = "";
@@ -989,7 +994,7 @@ window.addEventListener('load', function () {
     });
   }
 
-  $cameraInner.addEventListener('click', function (){
+  $cameraInner.addEventListener('click', function () {
     $cameraInner.style.visibility = "hidden";
   });
 
@@ -1003,7 +1008,7 @@ window.addEventListener('load', function () {
       if ($deviceElement.classList.contains('startTouch')) {
         //console.log("first timeout");
         longtouch = true;
-        //showSecondary(device, event);
+        showSecondary(device, event);
       }
     }, 300)
     timeout2 = setTimeout(function () {
@@ -1211,6 +1216,7 @@ window.addEventListener('load', function () {
     setCookie("indoortemperature", iframesettings.newindoortemperature, 12)
     setCookie("homeydashdevicebrightness", iframesettings.newhomeydashdevicebrightness, 12)
     setCookie("showtime", iframesettings.newshowTime, 12)
+    setCookie("darkmode", iframesettings.newdarkmode, 12)
     setCookie("zoom", iframesettings.newZoom, 12)
     setCookie("order", iframesettings.neworder, 12)
     location.assign(location.protocol + "//" + location.host + location.pathname + "?theme=" + iframesettings.newtheme + "&lang=" + iframesettings.newlanguage + "&token=" + iframesettings.token + "&background=" + encodeURIComponent(iframesettings.urlbackground) + "&logo=" + encodeURIComponent(iframesettings.urllogo))

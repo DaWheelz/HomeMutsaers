@@ -13,7 +13,6 @@ html, body {
 
 body {
   font-family: Roboto, Helvetica, sans-serif;
-  background-image: linear-gradient(-0deg, rgb(212, 212, 212), white);
   background-attachment: fixed;
   background-size: cover;
   color: black;
@@ -438,109 +437,6 @@ a {
   visibility: hidden;
 }
 
-#battery-details {
-  display: inline-block;
-  width: 5;
-  height: 5;
-  margin-left: auto;
-  margin-right: 0;
-  background: Lightgreen;
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  -webkit-mask-image: url(../img/batteryfull.png);
-}
-
-#battery-details.alarm {
-  -webkit-mask-image: url(../img/battery.png);
-  Background-color: white;
-  -webkit-border-radius: none;
-  border-radius: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-  -webkit-animation: glowing 1500ms infinite;
-  -o-animation: glowing 1500ms infinite;
-  animation: glowing 1500ms infinite;
-}
-
-@-webkit-keyframes glowing {
-  0% {
-    background-color: #B20000;
-    -webkit-box-shadow: 0 0 3px #B20000;
-  }
-  50% {
-    background-color: #FF0000;
-    -webkit-box-shadow: 0 0 50px #FF0000;
-  }
-  100% {
-    background-color: #B20000;
-    -webkit-box-shadow: 0 0 3px #B20000;
-  }
-}
-
-#notification-details {
-  display: inline-block;
-  width: 2px;
-  height: 2px;
-  margin-left: auto;
-  margin-right: 0;
-  background: black;
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  -webkit-mask-image: url(../img/notification.png);
-}
-
-#notification-details.alarm {
-  background-color: orange;
-}
-
-#sensor-details {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-left: auto;
-  margin-right: 0;
-  background: lightgreen;
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  -webkit-mask-image: url(../img/warning.png);
-}
-
-#sensor-details.alarm {
-  -webkit-mask-image: url(../img/warning.png);
-  Background-color: white;
-  -webkit-border-radius: none;
-  border-radius: none;
-  border: none;
-  color: #FFFFFF;
-  cursor: pointer;
-  -webkit-animation: glowing 1500ms infinite;
-  -o-animation: glowing 1500ms infinite;
-  animation: glowing 1500ms infinite;
-}
-
-@-webkit-keyframes glowing {
-  0% {
-    background-color: #B20000;
-    -webkit-box-shadow: 0 0 3px #B20000;
-  }
-  50% {
-    background-color: #FF0000;
-    -webkit-box-shadow: 0 0 50px #FF0000;
-  }
-  100% {
-    background-color: #B20000;
-    -webkit-box-shadow: 0 0 3px #B20000;
-  }
-}
-
-#sensor-details.fault {
-  background-color: red;
-}
-
 #settings-icon {
   display: inline-block;
   width: 2px;
@@ -612,7 +508,6 @@ a {
   font-size: 20px;
   font-weight: 300;
   color: black;
-  background: white;
   margin: 10px;
   margin-bottom: 3px;
 }
@@ -621,7 +516,6 @@ a {
   font-size: 14px;
   font-weight: 300;
   margin-top: -10px;
-  background: white;
   margin: 10px;
   margin-top: 3px;
   color: #a8a8a8;
@@ -751,4 +645,9 @@ a {
 
 .device .name.highlight {
   font-weight: 1000;
+}
+
+.dark, 
+.dark * {
+  
 }

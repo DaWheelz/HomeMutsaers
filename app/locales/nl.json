@@ -64,6 +64,7 @@
             "background": "Achtergrond (url)",
             "opacity": "Achtergrond transparantie",
             "clock": "Toon klok",
+            "darkmode": "Donkere modus",
             "zoom": "Zoom"
         },
         "errors": {

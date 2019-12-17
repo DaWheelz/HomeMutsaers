@@ -2,6 +2,7 @@ var newoutdoortemperature
 var newindoortemperature
 var newhomeydashdevicebrightness
 var nohomeybrightnessdevice
+var newdarkmode
 var newlanguage
 var newtheme
 var neworder
@@ -25,6 +26,7 @@ window.addEventListener('load', function() {
     newoutdoortemperature = parent.outdoortemperature
     newindoortemperature = parent.indoortemperature
     newhomeydashdevicebrightness = parent.homeydashdevicebrightness
+    newdarkmode = parent.darkmode
     newlanguage = parent.locale
     newtheme = parent.theme
     token = parent.urltoken
@@ -49,6 +51,7 @@ window.addEventListener('load', function() {
     var $opacitybackground = document.getElementById("opacity-background");
     var $btndeletebackground = document.getElementById('btn-delete-background');
     var $switchshowtime = document.getElementById('switch-show-time');
+    var $switchdarkmode = document.getElementById('switch-dark-mode');
     var $zoomcontent = document.getElementById('zoom-content'); 
     var $row1 = document.getElementById('row1');
     var $row1up = document.getElementById('row1-up');
@@ -69,6 +72,7 @@ window.addEventListener('load', function() {
     document.getElementById('appearance-logo').innerHTML = parent.texts.settings.appearance.logo;
     document.getElementById('appearance-background').innerHTML = parent.texts.settings.appearance.background;
     document.getElementById('appearance-opacity').innerHTML = parent.texts.settings.appearance.opacity;
+    document.getElementById('appearance-mode').innerHTML = parent.texts.settings.appearance.darkmode;
     document.getElementById('appearance-clock').innerHTML = parent.texts.settings.appearance.clock;
     document.getElementById('appearance-zoom').innerHTML = parent.texts.settings.appearance.zoom;
 
@@ -215,6 +219,14 @@ window.addEventListener('load', function() {
 
     $switchshowtime.addEventListener('click', function() {
         newshowTime = $switchshowtime.checked
+    })
+
+    newdarkmode = getCookie("darkmode")
+    newdarkmode = ( newdarkmode == "true") ? true: false;
+    $switchdarkmode.checked = newdarkmode
+
+    $switchdarkmode.addEventListener('click', function() {
+        newdarkmode = $switchdarkmode.checked
     })
 
     newZoom = getCookie("zoom")
