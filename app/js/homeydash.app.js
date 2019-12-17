@@ -87,6 +87,27 @@ window.addEventListener('load', function () {
   var $powerconsumpicon = document.getElementById('power-consumption-icon');
   var $powerconsump = document.getElementById('power-consumption');
 
+  var themetoggle = document.querySelector('input[name=theme]');
+
+  let trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('transition');
+    },200)
+  }
+
+  themetoggle.addEventListener('change', function () {
+    if (this.checked) {
+      trans()
+      document.documentElement.setAttribute('data-theme', 'dark');
+      setCookie("darkmode", true, 365)
+    } else {
+      trans()
+      setCookie("darkmode", false, 365)
+      document.documentElement.setAttribute('data-theme', 'light')
+    }
+  })
+
   var order = getCookie("order")
   if (order != "") {
     row = order.split(",")
@@ -251,7 +272,6 @@ window.addEventListener('load', function () {
     }).catch(console.error);
 
     homey.users.getUserMe().then(function (user) {
-      console.log(user)
       me = user;
       me.properties = me.properties || {};
       me.properties.favoriteFlows = me.properties.favoriteFlows || [];
@@ -302,7 +322,6 @@ window.addEventListener('load', function () {
           //if(!device.ui.quickAction) return false;
           return true;
         });
-        console.log(favoriteDevices);
         renderGroups(favoriteDevices);
 
         favoriteDevices.forEach(function (device) {
@@ -678,26 +697,7 @@ window.addEventListener('load', function () {
   function renderImages() {
     var logo = getCookie('logo')
     var darkmode = getCookie('darkmode')
-    var stylesheet = document.styleSheets[0];
-    console.log(stylesheet);
-    var css = ""
-
-    if(darkmode = true){
-      // document.body.style.background = "#2b2b2b";
-      // document.body.style.color = "white"
-
-      // //device/group/flow cards
-      // stylesheet.cssRules[70].style.backgroundColor = "#5e5e5e"
-    }else{
-
-    }
-
-    if (window.matchMedia('(prefers-color-scheme)').media === 'not all') {
-      console.log('Browser doesn\'t support dark mode');
-    }else {
-      console.log('it does');
-    }
-    
+    var css = "";
 
     styleElem = document.head.appendChild(document.createElement("style"));
     styleElem.innerHTML = "#body:after {" + css + "}";

@@ -6,16 +6,37 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html {
   width: 100%;
   height: 100%;
+  --bg: #fcfcfc;
+  --bg-card: #ebebeb;
+  --color-text: #333333;
+  --color-text-secondary: #686868;
+  --energy-img: url(../img/capabilities/energy.png);
+  --roof-img : url(../img/roof1.png);
+}
+
+html[data-theme='dark'] {
+  --bg: #333333;
+  --bg-card: #434343;
+  --color-text: #ebebeb;
+  --color-text-secondary: #b5b5b5;
+  --energy-img: url(../img/capabilities/energy-light.png);
+  --roof-img : url(../img/roof.png);
+}
+
+html.transition, html.transition *, html.transition *:before, html.transition *:after {
+  transition: all 200ms !important;
+  transition-delay: 0 !important;
 }
 
 body {
   font-family: Roboto, Helvetica, sans-serif;
   background-attachment: fixed;
   background-size: cover;
-  color: black;
+  color: var(--color-text);
+  background-color: var(--bg);
 }
 
 .tablecell {
@@ -327,11 +348,11 @@ a {
   margin-top: 0vw;
   width: 3vw;
   height: 3vw;
-  margin-left: 1vw;
+  margin-left: 2vw;
   margin-right: auto;
   background: no-repeat center center;
   background-size: contain;
-  background-image: url(../img/roof1.png);
+  background-image: var(--roof-img);
   visibility: hidden;
 }
 
@@ -339,19 +360,19 @@ a {
   display: inline-block;
   vertical-align: top;
   margin-top: 0vw;
+  margin-left: 1vw;
   width: 2vw;
   height: 3vw;
-  margin-left: 1vw;
   margin-right: auto;
   background: no-repeat center center;
   background-size: contain;
-  background-image: url(../img/capabilities/energy.png);
+  background-image: var(--energy-img);
   visibility: hidden;
 }
 
 #power-consumption {
   display: inline-block;
-  margin-left: -3vw;
+  margin-left: -2vw;
   font-size: 2.5vw;
   line-height: 3vw;
   font-weight: 250;
@@ -366,7 +387,7 @@ a {
 
 #weather-temperature-inside {
   display: inline-block;
-  margin-left: -3.2vw;
+  margin-left: -3.7vw;
   font-size: 2.5vw;
   line-height: 3vw;
   font-weight: 250;
@@ -423,13 +444,20 @@ a {
   /*-webkit-user-select: none;*/
 }
 
+#theme-switch {
+  position: absolute;
+  top: 7px;
+  right: 100px;
+  /*-webkit-user-select: none;*/
+}
+
 #version-icon {
   display: inline-block;
   width: 10px;
   height: 10px;
   margin-left: auto;
   margin-right: 0;
-  background: black;
+  background: var(--color-text-secondary);
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center center;
@@ -443,7 +471,7 @@ a {
   height: 2px;
   margin-left: auto;
   margin-right: 0;
-  background: black;
+  background: var(--color-text-secondary);
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center center;
@@ -456,10 +484,11 @@ a {
   height: 40px;
   margin-left: auto;
   margin-right: 0;
-  background: no-repeat center center;
-  background-image: url(../img/refresh.png);
-  background-size: contain;
-  -webkit-user-select: none;
+  background: var(--color-text-secondary);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  -webkit-mask-image: url(../img/refresh.png);
 }
 
 .favorites {}
@@ -471,7 +500,7 @@ a {
   font-weight: 300;
   padding-bottom: 12px;
   margin-bottom: 15px;
-  color: black;
+  color: var(--color-text);
 }
 
 .favorites h2:after {
@@ -500,14 +529,14 @@ a {
   font-size: 0;
   margin-right: 24px;
   margin-bottom: 15px;
-  background: white;
+  background: var(--bg-card);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .flow .name {
   font-size: 20px;
   font-weight: 300;
-  color: black;
+  color: var(--color-text);
   margin: 10px;
   margin-bottom: 3px;
 }
@@ -518,7 +547,7 @@ a {
   margin-top: -10px;
   margin: 10px;
   margin-top: 3px;
-  color: #a8a8a8;
+  color: var(--color-text-secondary);
 }
 
 .device {
@@ -528,7 +557,7 @@ a {
   width: 100px;
   height: 100px;
   border: 2px solid black;
-  background-color: white;
+  background-color: var(--bg-card);
   border: none;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
@@ -541,16 +570,6 @@ a {
 
 .device.on {
   opacity: 1;
-}
-
-.device.alarm {
-  Background-color: #FF0000;
-  -webkit-border-radius: none;
-  -webkit-box-shadow: 0 0 50px #FF0000;
-  border-radius: none;
-  border: none;
-  color: #FFFFFF;
-  cursor: pointer;
 }
 
 .device.away {
@@ -575,7 +594,7 @@ a {
 .device .icon {
   width: 45px;
   height: 45px;
-  background: black;
+  background: var(--color-text);
   margin-bottom: 3px;
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -589,7 +608,7 @@ a {
   left: 15px;
   width: 35px;
   height: 35px;
-  background: black;
+  background: var(--bg-card);
   margin-bottom: 3px;
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -611,7 +630,7 @@ a {
   white-space: normal;
   text-overflow: ellipsis;
   -webkit-user-select: none;
-  color: black;
+  color: var(--color-text);
   text-align: right;
 }
 
@@ -638,16 +657,60 @@ a {
   font-weight: 300;
   overflow: hidden;
   white-space: normal;
-  text-overflow: ellipsis;
   -webkit-user-select: none;
-  color: black;
+  color: var(--color-text);
 }
 
 .device .name.highlight {
   font-weight: 1000;
 }
 
-.dark, 
-.dark * {
-  
+#toggle-icon {
+  height: 2px;
+  margin-top: 0px;
+  margin-left: -48px;
+  margin-bottom: -21px;
+}
+
+input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  display: inline-block;
+}
+
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 45px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.2s;
+}
+
+input:checked+label {
+  background: #bada55;
+}
+
+input:checked+label:after {
+  left: calc(100% - 3px);
+  transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 130px;
 }
