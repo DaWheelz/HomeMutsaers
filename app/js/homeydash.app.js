@@ -83,6 +83,8 @@ window.addEventListener('load', function () {
   var $favoritegroups = document.getElementById('favorite-groups');
   var $alarmsInner = document.getElementById('alarms-inner');
   var $cameraInner = document.getElementById('camera');
+  var $powerconsumpicon = document.getElementById('power-consumption-icon');
+  var $powerconsump = document.getElementById('power-consumption');
 
   var order = getCookie("order")
   if (order != "") {
@@ -157,6 +159,8 @@ window.addEventListener('load', function () {
     $weatherroof.style.visibility = "visible"
     $weathertemperatureinside.style.visibility = "visible"
   }
+
+  $powerconsumpicon.style.visibility = "visible"
 
   showTime = getCookie("showtime")
   showTime = (showTime == "true") ? true : false;
@@ -288,8 +292,6 @@ window.addEventListener('load', function () {
         return renderFlows(favoriteFlows);
       }).catch(console.error);
 
-
-
       homey.devices.getDevices().then(function (devices) {
         var favoriteDevices = me.properties.favoriteDevices.map(function (deviceId) {
           return devices[deviceId];
@@ -302,8 +304,6 @@ window.addEventListener('load', function () {
         });
         console.log(favoriteDevices);
         renderGroups(favoriteDevices);
-
-
 
         favoriteDevices.forEach(function (device) {
           // console.log(device.name)
@@ -489,6 +489,7 @@ window.addEventListener('load', function () {
           // /new 1.1.1.9
           if (device.capabilitiesObj.measure_power) {
             device.makeCapabilityInstance('measure_power', function (value) {
+              
               var $deviceElement = document.getElementById('device:' + device.id);
               if ($deviceElement) {
                 var $valueElement = document.getElementById('value:' + device.id + ":measure_power");
@@ -498,14 +499,15 @@ window.addEventListener('load', function () {
             });
           }
           if (device.capabilitiesObj.meter_power) {
-            device.makeCapabilityInstance('meter_power', function (value) {
-              var $deviceElement = document.getElementById('device:' + device.id);
-              if ($deviceElement) {
-                var $valueElement = document.getElementById('value:' + device.id + ":meter_power");
-                capability = device.capabilitiesObj['meter_power']
-                renderValue($valueElement, capability.id, capability.value, capability.units)
-              }
-            });
+            var $value = ""
+             if(device.capabilitiesObj.meter_power.value == null){
+               $value = " -"
+             }else {
+               $value = device.capabilitiesObj.meter_power.value
+             }
+
+             $powerconsump.innerHTML = $value;
+             console.log($value);
           }
           if (device.capabilitiesObj.measure_current) {
             device.makeCapabilityInstance('measure_current', function (value) {
@@ -943,6 +945,7 @@ window.addEventListener('load', function () {
               });
             }
 
+            //security images
             $deviceElement.addEventListener('click', function () {
               if (nameChange) { return } // No click when shown capability just changed
               if (longtouch) { return } // No click when longtouch was performed

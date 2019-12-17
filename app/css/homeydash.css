@@ -310,7 +310,7 @@ a {
 
 #weather-temperature {
   display: inline-block;
-  margin-left: -3.2vw;
+  margin-left: -3.8vw;
   font-size: 2.5vw;
   line-height: 3vw;
   font-weight: 250;
@@ -336,9 +336,38 @@ a {
   visibility: hidden;
 }
 
-#weather-temperature-inside {
+#power-consumption-icon {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 0vw;
+  width: 2vw;
+  height: 3vw;
+  margin-left: 1vw;
+  margin-right: auto;
+  background: no-repeat center center;
+  background-size: contain;
+  background-image: url(../img/capabilities/energy.png);
+  visibility: hidden;
+}
+
+#power-consumption {
   display: inline-block;
   margin-left: -3vw;
+  font-size: 2.5vw;
+  line-height: 3vw;
+  font-weight: 250;
+  visibility: visible;
+}
+
+#power-consumption:after {
+  content: "KWh";
+  font-size: 1vw;
+  vertical-align: text-top;
+}
+
+#weather-temperature-inside {
+  display: inline-block;
+  margin-left: -3.2vw;
   font-size: 2.5vw;
   line-height: 3vw;
   font-weight: 250;
