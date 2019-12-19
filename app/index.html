@@ -29,6 +29,7 @@
 
 <body id="body">
   <div id="camera"></div>
+  <div id="energy-consumption-popup"></div>
   <div id="settings-panel"></div>
   <div id="slider-panel">
     <div id="slider-close">&times;</div>
@@ -80,27 +81,45 @@
 
       <div id="content">
 
-        <div id="row1">
-          <div id="flows" class="favorites">
-            <h2><span id="favorite-flows"></span></h2>
-            <div id="flows-inner" class="flows favorites-inner"></div>
-          </div>
+        <div class="w3-bar w3-black">
+          <button class="w3-bar-item btn" onclick="openTab('row1')">Groepen</button>
+          <button class="w3-bar-item btn" onclick="openTab('row2')">Apparaten</button>
+          <button class="w3-bar-item btn" onclick="openTab('row3')">Flows</button>
+          <button class="w3-bar-item btn" onclick="openTab('row4')">Energie consumptie</button>
         </div>
 
-        <div id="row2">
-          <div id="devices" class="favorites">
-            <h2><span id="favorite-devices"></span></h2>
-            <div id="devices-inner" class="devices favorites-inner"></div>
-          </div>
-        </div>
-
-        <div id="row3">
+        <div id="row1" class="tab">
           <div id="groups" class="favorites">
-            <h2><span id="favorite-groups"></span></h2>
             <div id="groups-inner" class="groups favorites-inner"></div>
           </div>
         </div>
 
+        <div id="row2" class="tab">
+          <div id="devices" class="favorites">
+            <div id="devices-inner" class="devices favorites-inner"></div>
+          </div>
+        </div>
+
+        <div id="row3" class="tab">
+          <div id="flows" class="favorites">
+            <div id="flows-inner" class="flows favorites-inner"></div>
+          </div>
+        </div>
+
+        <div id="row4" class="tab">
+          <h1>Energie verbruik</h1>
+          <br />
+          <table>
+            <thead>
+              <tr>
+                <th>Apparaat</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Verbruik</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
     </div>
   </div>
