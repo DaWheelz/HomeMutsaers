@@ -22,6 +22,7 @@ if (lang) {
   locale = lang;
 }
 var texts = getTexts(locale)
+
 loadScript(locale, setLocale)
 
 function openTab(tabName) {
@@ -32,9 +33,11 @@ function openTab(tabName) {
   document.getElementById(tabName).style.display = "block";
 }
 
-
-
 window.addEventListener('load', function () {
+
+  //google.charts.load('current', { packages: ['corechart', 'line'] });
+  //google.charts.setOnLoadCallback(drawBasic);
+
 
   openTab("row1");
 
@@ -100,8 +103,11 @@ window.addEventListener('load', function () {
   var $energyconsumpPopup = document.getElementById('energy-consumption-popup');
   var $powerconsumpicon = document.getElementById('power-consumption-icon');
   var $powerconsump = document.getElementById('power-consumption');
-
   var themetoggle = document.querySelector('input[name=theme]');
+
+  const bgcolor = document.documentElement.style.getPropertyValue('--bg');
+  const bgcardcolor = document.documentElement.style.getPropertyValue('--bg-card');
+  const textcolor = document.documentElement.style.getPropertyValue('--color-text');
 
   let trans = () => {
     document.documentElement.classList.add('transition');
@@ -109,7 +115,6 @@ window.addEventListener('load', function () {
       document.documentElement.classList.remove('transition');
     }, 200)
   }
-
   themetoggle.addEventListener('change', function () {
     if (this.checked) {
       trans()
@@ -198,7 +203,7 @@ window.addEventListener('load', function () {
     $weathertemperatureinside.style.visibility = "visible"
   }
 
-  getPowerUsageDevices()
+
 
   $powerconsumpicon.style.visibility = "visible"
 
@@ -289,7 +294,6 @@ window.addEventListener('load', function () {
 
     request.onload = function () {
       var data = JSON.parse(this.response);
-      console.log(data);
       if (request.status >= 200 && request.status < 400) {
         $powerconsump.innerHTML = data.powerUsage.value
       } else {
@@ -300,6 +304,8 @@ window.addEventListener('load', function () {
   }
 
   function renderHomey() {
+
+    getPowerUsageDevices()
 
     homey.users.getUsers().then(function (users) {
       for (user in users) {
@@ -378,47 +384,6 @@ window.addEventListener('load', function () {
               var $deviceElement = document.getElementById('device:' + device.id);
               if ($deviceElement) {
                 $deviceElement.classList.toggle('on', !!value);
-              }
-            });
-          }
-          if (device.capabilitiesObj.measure_temperature) {
-            device.makeCapabilityInstance('measure_temperature', function (value) {
-              var $deviceElement = document.getElementById('device:' + device.id);
-              if ($deviceElement) {
-                var $valueElement = document.getElementById('value:' + device.id + ":measure_temperature");
-                capability = device.capabilitiesObj['measure_temperature']
-                renderValue($valueElement, capability.id, capability.value, capability.units)
-              }
-            });
-          }
-          if (device.capabilitiesObj.target_temperature) {
-            device.makeCapabilityInstance('target_temperature', function (value) {
-              var $deviceElement = document.getElementById('device:' + device.id);
-              if ($deviceElement) {
-                var $valueElement = document.getElementById('value:' + device.id + ":target_temperature");
-                capability = device.capabilitiesObj['target_temperature']
-                renderValue($valueElement, capability.id, capability.value, capability.units)
-                if (device.name == "Bier") { renderValue($valueElement, capability.id, capability.value, "") }
-              }
-            });
-          }
-          if (device.capabilitiesObj.daily_production) {
-            device.makeCapabilityInstance('daily_production', function (value) {
-              var $deviceElement = document.getElementById('device:' + device.id);
-              if ($deviceElement) {
-                var $valueElement = document.getElementById('value:' + device.id + ":daily_production");
-                capability = device.capabilitiesObj['daily_production']
-                renderValue($valueElement, capability.id, capability.value, capability.units)
-              }
-            });
-          }
-          if (device.capabilitiesObj.production) {
-            device.makeCapabilityInstance('production', function (value) {
-              var $deviceElement = document.getElementById('device:' + device.id);
-              if ($deviceElement) {
-                var $valueElement = document.getElementById('value:' + device.id + ":production");
-                capability = device.capabilitiesObj['production']
-                renderValue($valueElement, capability.id, capability.value, capability.units)
               }
             });
           }
@@ -797,6 +762,82 @@ window.addEventListener('load', function () {
     $cameraInner.style.visibility = "hidden";
   });
 
+  // $energyconsumpPopup.addEventListener('click', function () {
+  //   $energyconsumpPopup.style.visibility = "hidden";
+  // });
+
+  // const valuewh = [];
+  // const datewh = [];
+  // const formatteddate = [];
+
+  // $powerconsumpicon.addEventListener('click', function () {
+  //   $energyconsumpPopup.style.visibility = "visible";
+  //   drawBasic();
+  // });
+  // async function drawBasic() {
+
+  //   await getChartData()
+
+  //   var data = new google.visualization.DataTable();
+  //   data.addColumn('number', 'W/uur');
+
+  //   data.addRows(valuewh);
+
+  //   var options = {
+  //     hAxis: {
+  //       title: 'Time',
+  //       slantedText: true,
+  //       slantedTextAngle: 90,
+  //     },
+  //     vAxis: {
+  //       title: 'Watt',
+  //     },
+  //     backgroundColor: bgcardcolor,
+  //   };
+
+  //   var chart = new google.visualization.LineChart(document.getElementById('energy-consumption-popup'));
+
+  //   chart.draw(data, options);
+  // }
+
+  // function pad(num) { 
+  //   return ("0"+num).slice(-2);
+  // }
+  // function getTimeFromDate(timestamp) {
+  //   var date = new Date(timestamp * 1000);
+  //   var hours = date.getHours();
+  //   var minutes = date.getMinutes();
+  //   var seconds = date.getSeconds();
+  //   return pad(hours)+":"+pad(minutes)
+  // }
+
+  // async function getChartData() {
+  //   request.open('GET', 'https://api.toon.eu/toon/v3/99908/consumption/electricity/data', true)
+  //   request.setRequestHeader('Authorization', 'Bearer e2e95548-f283-49d4-b695-8083d240daca');
+
+  //   request.onload = function () {
+  //     var data = JSON.parse(this.response);
+  //     if (request.status >= 200 && request.status < 400) {
+  //       data.hours.forEach(function (value) {
+  //         valuewh.push(value.peak);
+  //         formatteddate.push(getTimeFromDate(value.timestamp))
+  //       })
+  //     } else {
+  //       console.log('error')
+  //     }
+  //   }
+  //   request.send()
+  // }
+
+  // //1576789200000
+  // console.log(formatteddate)
+
+  // function getDateFromTimestamp(timestamp){
+  //   timestamp.forEach(function(stamp){
+  //     console.log(stamp)
+  //   })
+  // }
+
   // New code start    
   function deviceStart($deviceElement, device, event) {
     if (nameChange) { return }
@@ -841,7 +882,7 @@ window.addEventListener('load', function () {
     var currentTime = hours + ":" + minutes + ":" + seconds;
 
     $textLarge.innerHTML = currentTime
-    $textSmall.innerHTML = texts.text.today + moment(now).format(' D MMMM YYYY ');
+    $textSmall.innerHTML = moment(now).format(' D MMMM YYYY ');
   }
 
   function renderValue($value, capabilityId, capabilityValue, capabilityUnits) {

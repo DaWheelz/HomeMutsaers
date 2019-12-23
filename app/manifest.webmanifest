@@ -1,0 +1,16 @@
+{
+    "name": "HomeMutsaers",
+    "theme_color": "#bbbbbb",
+    "background_color": "#2196f3",
+    "display": "standalone",
+    "orientation": "landscape",
+    "start_url": "/",
+    "scope": "/",
+    "icons": [
+      {
+        "src": "/img/favicon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
